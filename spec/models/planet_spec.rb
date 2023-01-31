@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Planet do 
-  let(:mars) {Planet.create!(name: "Mars", planet_type: "Terrestrial", year_discovered: 1610, confirmed: true)}
   let(:solar_system) {PlanetarySystem.create!(name: "The Solar System", light_years_from_earth: 0, star_age: 4_600_000_000, metal_rich_star: true)}
+  let(:mars) {Planet.create!(name: "Mars", planet_type: "Terrestrial", year_discovered: 1610, confirmed: true, planetary_system_id: solar_system.id)}
 
   describe '#attributes/columns' do 
     it 'has a name, type, year discovered and confirmed' do 
