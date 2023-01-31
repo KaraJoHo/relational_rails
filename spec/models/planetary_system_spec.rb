@@ -10,7 +10,7 @@ RSpec.describe PlanetarySystem do
       expect(solar_system.star_age).to eq(4_600_000_000)
       expect(solar_system.metal_rich_star).to eq(true)
     end
-    #it {should have_many :planets}
+    it {should have_many :planets}
   end
 
 end

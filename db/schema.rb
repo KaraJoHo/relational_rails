@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_31_215609) do
+ActiveRecord::Schema.define(version: 2023_01_31_220056) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,9 @@ ActiveRecord::Schema.define(version: 2023_01_31_215609) do
     t.string "planet_type"
     t.integer "year_discovered"
     t.boolean "confirmed"
+    t.bigint "planetary_system_id"
+    t.index ["planetary_system_id"], name: "index_planets_on_planetary_system_id"
   end
 
+  add_foreign_key "planets", "planetary_systems"
 end
