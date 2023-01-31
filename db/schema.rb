@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_31_220056) do
+ActiveRecord::Schema.define(version: 2023_01_31_221044) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 2023_01_31_220056) do
     t.integer "light_years_from_earth"
     t.bigint "star_age"
     t.boolean "metal_rich_star"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "planets", force: :cascade do |t|
@@ -28,6 +30,8 @@ ActiveRecord::Schema.define(version: 2023_01_31_220056) do
     t.integer "year_discovered"
     t.boolean "confirmed"
     t.bigint "planetary_system_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["planetary_system_id"], name: "index_planets_on_planetary_system_id"
   end
 
