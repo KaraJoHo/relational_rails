@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_31_213653) do
+ActiveRecord::Schema.define(version: 2023_01_31_215609) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,13 @@ ActiveRecord::Schema.define(version: 2023_01_31_213653) do
     t.integer "light_years_from_earth"
     t.bigint "star_age"
     t.boolean "metal_rich_star"
+  end
+
+  create_table "planets", force: :cascade do |t|
+    t.string "name"
+    t.string "planet_type"
+    t.integer "year_discovered"
+    t.boolean "confirmed"
   end
 
 end
