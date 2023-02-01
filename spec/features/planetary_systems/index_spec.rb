@@ -54,13 +54,11 @@ RSpec.describe 'Planetary System Index Page' do
     it 'has a link to the child index' do 
       visit "/planetary_systems"
 
-      expect(page).to have_link('Planets')
+      expect(page).to have_link('Planets Index')
        
-      click_link 'Planets'
+      click_link 'Planets Index'
 
-      expect(current_path).to eq('/planets')
-      # save_and_open_page
-      
+      expect(current_path).to eq('/planets')   
     end
   end
 end

@@ -34,7 +34,18 @@ RSpec.describe "Planets Index Page" do
       end
     end
     it 'has a link to the planetary systems page' do 
-      
+      the_solar_system = PlanetarySystem.create(name: "The Solar System", light_years_from_earth: 0, star_age: 4_600_000_000, metal_rich_star: true)
+      mercury = Planet.create(name: "Mercury", planet_type: "Terrestrial", year_discovered: 1631, confirmed: true, planetary_system_id: the_solar_system.id)
+      venus = Planet.create(name: "Venus", planet_type: "Terrestrial", year_discovered: 1610, confirmed: true, planetary_system_id: the_solar_system.id)
+
+      visit "/planets"
+      save_and_open_page
+
+      expect(page).to have_link('Planetary Systems')
+       
+      click_link 'Planetary Systems'
+
+      expect(current_path).to eq('/planetary_systems')
     end
   end
 end
