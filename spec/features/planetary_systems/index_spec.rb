@@ -13,12 +13,6 @@ RSpec.describe 'Planetary System Index Page' do
       expect(page).to have_content(tau_ceti_system.name)
     end
 
-    #User Story 6, Parent Index sorted by Most Recently Created 
-
-    # As a visitor
-    # When I visit the parent index,
-    # I see that records are ordered by most recently created first
-    # And next to each of the records I see when it was created
     it 'order records by most recently created first' do 
       the_solar_system = PlanetarySystem.create!(name: "The Solar System", light_years_from_earth: 0, star_age: 4_600_000_000, metal_rich_star: true)
       tau_ceti_system = PlanetarySystem.create!(name: "Tau Ceti", light_years_from_earth: 12, star_age: 5_800_000_000, metal_rich_star: false)
