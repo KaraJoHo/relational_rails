@@ -49,8 +49,12 @@ RSpec.describe 'Planetary System Index Page' do
       expect(tau_ceti_system.name).to appear_before(the_solar_system.name)
 
       expect(page).to have_content(the_solar_system.created_at)
-      expect(page).to have_content(the_solar_system.created_at)
-      expect(page).to have_content(the_solar_system.created_at)
+      expect(page).to have_content(tau_ceti_system.created_at)
+      expect(page).to have_content(kepler_11_system.created_at)
+
+      expect(page).to have_content("Created at: #{the_solar_system.created_at}")
+      expect(page).to have_content("Created at: #{tau_ceti_system.created_at}")
+      expect(page).to have_content("Created at: #{kepler_11_system.created_at}")
     end
   end
 end
