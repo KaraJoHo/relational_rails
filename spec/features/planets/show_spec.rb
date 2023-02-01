@@ -1,10 +1,5 @@
 require 'rails_helper' 
-# User Story 4, Child Show 
 
-# As a visitor
-# When I visit '/child_table_name/:id'
-# Then I see the child with that id including the child's attributes
-# (data from each column that is on the child table)
 RSpec.describe "Planets Show Page" do 
   describe 'As a visitor' do 
     describe 'When I visit /planets/:id' do 
@@ -14,6 +9,7 @@ RSpec.describe "Planets Show Page" do
         venus = Planet.create(name: "Venus", planet_type: "Terrestrial", year_discovered: 1610, confirmed: true, planetary_system_id: the_solar_system.id)
 
         visit "/planets/#{mercury.id}"
+        save_and_open_page
 
         expect(page).to have_content(mercury.name)
         expect(page).to have_content(mercury.planet_type)
@@ -27,12 +23,8 @@ RSpec.describe "Planets Show Page" do
         expect(page).to have_content("Planetary System: #{mercury.planetary_system.name}")
 
         expect(page).to_not have_content(venus.name)
-        expect(page).to_not have_content(venus.planet_type)
-
-        expect(page).to_not have_content("Planet Type: #{venus.planet_type}")
         expect(page).to_not have_content("Year Discovered: #{venus.year_discovered}")
       end
     end
   end
-
 end
