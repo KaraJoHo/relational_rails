@@ -13,6 +13,6 @@ RSpec.describe Planet do
 
       expect(mars.planetary_system_id).to eq(solar_system.id)
     end
-    it {should belong_to :planetary_system}
+      it {should belong_to :planetary_system}
   end
 end
