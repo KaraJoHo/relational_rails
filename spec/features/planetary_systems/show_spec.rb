@@ -8,7 +8,6 @@ RSpec.describe 'Planetary Systems Show Page' do
       tau_ceti_system = PlanetarySystem.create!(name: "Tau Ceti", light_years_from_earth: 12, star_age: 5_800_000_000, metal_rich_star: false)
 
       visit "/planetary_systems/#{the_solar_system.id}"
-      save_and_open_page
 
       expect(page).to have_content(the_solar_system.name)
       expect(page).to have_content(the_solar_system.id)
