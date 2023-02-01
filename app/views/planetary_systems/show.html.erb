@@ -5,3 +5,7 @@
 <p1> Light Years From Earth: <%= @light_years_from_earth %></p1><br>
 <p1> Star Age: <%= @star_age %></p1><br> 
 <p1> Metal Rich Star?: <%= @metal_rich_star %></p1>
+<br>
+<br>
+
+<p1><strong><%= link_to("#{@planetary_system.name} Planets", "/planetary_systems/#{@planetary_system.id}/planets") %></strong></p1>
