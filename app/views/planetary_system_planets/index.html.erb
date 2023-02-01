@@ -1,0 +1,9 @@
+<h1>Planetary System: <%= @planetary_system.name %></h1>
+
+<% @planets_in_system.each do |planet| %>
+  <h4><%= planet.name %></h4>
+  <p>Planet Type: <%= planet.planet_type %></p>
+  <p>Year Discovered: <%= planet.year_discovered %></p>
+  <p>Confirmed?: <%= planet.confirmed %></p>
+  <p>Planetary System: <%= @planetary_system.name%></p>
+<% end %>
