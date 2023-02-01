@@ -39,5 +39,22 @@ RSpec.describe 'Planetary Systems Show Page' do
       expect(page).to have_content(the_solar_system.planets.count)
       expect(page).to have_content("Current Number of Planets: #{the_solar_system.planets.count}")
     end
+
+    it 'has a link to the planetary system and its planets index' do 
+      the_solar_system = PlanetarySystem.create!(name: "The Solar System", light_years_from_earth: 0, star_age: 4_600_000_000, metal_rich_star: true)
+      tau_ceti_system = PlanetarySystem.create!(name: "Tau Ceti", light_years_from_earth: 12, star_age: 5_800_000_000, metal_rich_star: false)
+
+      mercury = Planet.create(name: "Mercury", planet_type: "Terrestrial", year_discovered: 1631, confirmed: true, planetary_system_id: the_solar_system.id)
+      venus = Planet.create(name: "Venus", planet_type: "Terrestrial", year_discovered: 1610, confirmed: true, planetary_system_id: the_solar_system.id)
+      earth = Planet.create(name: "Earth", planet_type: "Terrestrial", year_discovered: 1543, confirmed: true, planetary_system_id: the_solar_system.id)
+
+      visit "/planetary_systems/#{the_solar_system.id}"
+
+      expect(page).to have_link("#{the_solar_system.name} Planets")
+
+      click_link "#{the_solar_system.name} Planets"
+
+      expect(current_path).to eq("/planetary_systems/#{the_solar_system.id}/planets")
+    end
   end
 end
