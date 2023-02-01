@@ -1,7 +1,8 @@
 class PlanetarySystemsController < ApplicationController 
 
   def index 
-    @planetary_systems = PlanetarySystem.all
+    # @planetary_systems = PlanetarySystem.all
+    @planetary_systems_most_recent = PlanetarySystem.order(created_at: :desc)
   end
 
   def show 
