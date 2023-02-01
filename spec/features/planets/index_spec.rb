@@ -1,0 +1,44 @@
+require 'rails_helper'
+
+# User Story 3, Child Index 
+
+# As a visitor
+# When I visit '/child_table_name'
+# Then I see each Child in the system including the Child's attributes
+# (data from each column that is on the child table)
+
+RSpec.describe "Planets Index Page" do 
+  describe 'When a visitor visits /planets' do 
+    describe 'They see each child including their attributes' do 
+      it 'displays each child and their attributes' do 
+        the_solar_system = PlanetarySystem.create(name: "The Solar System", light_years_from_earth: 0, star_age: 4_600_000_000, metal_rich_star: true)
+        mercury = Planet.create(name: "Mercury", planet_type: "Terrestrial", year_discovered: 1631, confirmed: true, planetary_system_id: the_solar_system.id)
+        venus = Planet.create(name: "Venus", planet_type: "Terrestrial", year_discovered: 1610, confirmed: true, planetary_system_id: the_solar_system.id)
+        
+        visit '/planets'
+
+        expect(page).to have_content(mercury.name)
+        expect(page).to have_content(mercury.planet_type)
+        expect(page).to have_content(mercury.year_discovered)
+        expect(page).to have_content(mercury.confirmed)
+        expect(page).to have_content(mercury.planetary_system.name)
+
+        expect(page).to have_content("Planet Type: #{mercury.planet_type}")
+        expect(page).to have_content("Year Discovered: #{mercury.year_discovered}")
+        expect(page).to have_content("Confirmed?: #{mercury.confirmed}")
+        expect(page).to have_content("Planetary System: #{mercury.planetary_system.name}")
+
+        expect(page).to have_content(venus.name)
+        expect(page).to have_content(venus.planet_type)
+        expect(page).to have_content(venus.year_discovered)
+        expect(page).to have_content(venus.confirmed)
+        expect(page).to have_content(venus.planetary_system.name)
+
+        expect(page).to have_content("Planet Type: #{venus.planet_type}")
+        expect(page).to have_content("Year Discovered: #{venus.year_discovered}")
+        expect(page).to have_content("Confirmed?: #{venus.confirmed}")
+        expect(page).to have_content("Planetary System: #{venus.planetary_system.name}")
+      end
+    end
+  end
+end
