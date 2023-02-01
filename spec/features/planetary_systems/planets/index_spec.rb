@@ -18,6 +18,7 @@ RSpec.describe "Planetary Systems Planets Index" do
         tau_ceti_h = Planet.create(name: "Tau Ceti H", planet_type: "Super Earth", year_discovered: 2017, confirmed: true, planetary_system_id: tau_ceti_system.id)
 
         visit "planetary_systems/#{the_solar_system.id}/planets"
+        save_and_open_page
 
         expect(page).to have_content(mercury.name)
         expect(page).to have_content(mercury.planet_type)
