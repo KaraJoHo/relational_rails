@@ -1,0 +1,3 @@
+class PlanetarySystemPlanetsController < ApplicationController 
+  
+end

@@ -9,7 +9,6 @@ RSpec.describe "Planets Show Page" do
         venus = Planet.create(name: "Venus", planet_type: "Terrestrial", year_discovered: 1610, confirmed: true, planetary_system_id: the_solar_system.id)
 
         visit "/planets/#{mercury.id}"
-        save_and_open_page
 
         expect(page).to have_content(mercury.name)
         expect(page).to have_content(mercury.planet_type)

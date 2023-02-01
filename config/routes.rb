@@ -5,4 +5,6 @@ Rails.application.routes.draw do
 
   get '/planets', to: 'planets#index'
   get '/planets/:id', to: 'planets#show'
+
+  get '/planetary_systems/:planetary_system_id/planets', to: 'planetary_system_planets#index'
 end
