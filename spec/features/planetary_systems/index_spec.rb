@@ -50,5 +50,17 @@ RSpec.describe 'Planetary System Index Page' do
       expect(page).to have_content("Created at: #{tau_ceti_system.created_at}")
       expect(page).to have_content("Created at: #{kepler_11_system.created_at}")
     end
+
+    it 'has a link to the child index' do 
+      visit "/planetary_systems"
+
+      expect(page).to have_link('Planets')
+       
+      click_link 'Planets'
+
+      expect(current_path).to eq('/planets')
+      # save_and_open_page
+      
+    end
   end
 end

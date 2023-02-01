@@ -33,5 +33,8 @@ RSpec.describe "Planets Index Page" do
         expect(page).to have_content("Planetary System: #{venus.planetary_system.name}")
       end
     end
+    it 'has a link to the planetary systems page' do 
+      
+    end
   end
 end
