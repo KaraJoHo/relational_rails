@@ -1,14 +1,10 @@
 require 'rails_helper'
-# User Story 5, Parent Children Index 
 
-# As a visitor
-# When I visit '/parents/:parent_id/child_table_name'
-# Then I see each Child that is associated with that Parent with each Child's attributes
-# (data from each column that is on the child table)
 RSpec.describe "Planetary Systems Planets Index" do 
   describe 'As a Visitor' do 
     describe 'When I visit /planetary_systems/:p_s_id/planets' do 
       it 'displays all planets(with attributes) associated with the given planetary system id' do 
+
         the_solar_system = PlanetarySystem.create(name: "The Solar System", light_years_from_earth: 0, star_age: 4_600_000_000, metal_rich_star: true)
         mercury = Planet.create(name: "Mercury", planet_type: "Terrestrial", year_discovered: 1631, confirmed: true, planetary_system_id: the_solar_system.id)
         venus = Planet.create(name: "Venus", planet_type: "Terrestrial", year_discovered: 1610, confirmed: true, planetary_system_id: the_solar_system.id)
@@ -46,7 +42,8 @@ RSpec.describe "Planetary Systems Planets Index" do
       end
 
       it 'displays another systems planets' do 
-         the_solar_system = PlanetarySystem.create(name: "The Solar System", light_years_from_earth: 0, star_age: 4_600_000_000, metal_rich_star: true)
+
+        the_solar_system = PlanetarySystem.create(name: "The Solar System", light_years_from_earth: 0, star_age: 4_600_000_000, metal_rich_star: true)
         mercury = Planet.create(name: "Mercury", planet_type: "Terrestrial", year_discovered: 1631, confirmed: true, planetary_system_id: the_solar_system.id)
         venus = Planet.create(name: "Venus", planet_type: "Terrestrial", year_discovered: 1610, confirmed: true, planetary_system_id: the_solar_system.id)
 
@@ -80,7 +77,6 @@ RSpec.describe "Planetary Systems Planets Index" do
 
         expect(page).to_not have_content(venus.name)
         expect(page).to_not have_content(venus.planet_type)
-
       end
     end
   end
