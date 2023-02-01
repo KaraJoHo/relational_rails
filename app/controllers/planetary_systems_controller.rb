@@ -12,5 +12,8 @@ class PlanetarySystemsController < ApplicationController
     @light_years_from_earth = @planetary_system.light_years_from_earth
     @star_age = @planetary_system.star_age 
     @metal_rich_star = @planetary_system.metal_rich_star
+
+    @planet_count = @planetary_system.planets.count
+
   end
 end
