@@ -1,7 +1,9 @@
-<h1><strong>Planetary Systems</strong></h1>
+<h1>Planetary Systems</h1>
 
-<% @planetary_systems_most_recent.each do |system| %>
+<% @planetary_systems.each do |system| %>
   <ul>
     <li><strong><%= system.name %></strong> Created at: <%= system.created_at %></li>
   </ul>
 <% end %>
+
+<%= link_to('New Planetary System', '/planetary_systems/new') %>
