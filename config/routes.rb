@@ -10,5 +10,8 @@ Rails.application.routes.draw do
   get '/planetary_systems/:planetary_system_id/planets', to: 'planetary_system_planets#index'
 
   post '/planetary_systems', to: 'planetary_systems#create'
+
+  get '/planetary_systems/:planetary_system_id/edit', to: 'planetary_systems#edit'
  
+  patch '/planetary_systems/:planetary_system_id', to: 'planetary_systems#update'
 end
