@@ -7,3 +7,5 @@
   <p>Confirmed?: <%= planet.confirmed %></p>
   <p>Planetary System: <%= @planetary_system.name%></p>
 <% end %>
+
+<%= link_to("Create Planet", "/planetary_systems/#{@planetary_system.id}/planets/new") %>

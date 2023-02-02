@@ -23,16 +23,26 @@ RSpec.describe "New Child Creation" do
     it 'has a link to add a new child for that parent' do 
       visit "/planetary_systems/#{@the_solar_system.id}/planets"
 
-      expect(page).to have_link("Create Child")
+      expect(page).to have_link("Create Planet")
 
-      click_link "Create Child"
+      click_link "Create Planet"
 
       expect(current_path).to eq("/planetary_systems/#{@the_solar_system.id}/planets/new")
 
     end
 
-    xit 'it has a form to fill in attributes and submit, create and post to the planetary system planets index' do 
+    it 'it has a form to fill in attributes and submit, create and post to the planetary system planets index' do 
+      visit "/planetary_systems/#{@the_solar_system.id}/planets/new"
 
+      fill_in("Name", with: "Earth")
+      fill_in("Planet Type", with: "Terrestrial")
+      fill_in("Year Discovered", with: 1543)
+      fill_in("Confirmed?", with: true)
+      fill_in("Planetary System ID", with: @the_solar_system.id)
+      click_button("Create Planet")
+
+      expect(current_path).to eq("/planetary_systems/#{@the_solar_system.id}/planets")
+      expect(page).to have_content("Earth")
     end
 
   end
