@@ -16,22 +16,25 @@ RSpec.describe 'New/Create' do
 
       visit '/planetary_systems'
 
+      expect(page).to have_link("New Planetary System")
+
       click_link "New Planetary System"
 
       expect(current_path).to eq('/planetary_systems/new')
     end
 
-    xit 'has a form to create a new planetary system' do 
+    it 'has a form to create a new planetary system' do 
       visit '/planetary_systems/new'
+      # save_and_open_page
 
-      fill_in("Name", with: "Other System")
-      fill_in("Light Years from Earth", with: 20)
+      fill_in("Name", with: "Supercool System")
+      fill_in("Light Years From Earth", with: 20)
       fill_in("Star Age", with: 300000)
       fill_in("Metal Rich Star?", with: true)
       click_button("Create Planetary System")
 
       expect(current_path).to eq('/planetary_systems')
-      expect(page).to have_content("Other System")
+      expect(page).to have_content("Supercool System")
     end
   end
 
