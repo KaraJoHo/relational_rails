@@ -38,7 +38,7 @@ RSpec.describe "New Child Creation" do
       fill_in("Planet Type", with: "Terrestrial")
       fill_in("Year Discovered", with: 1543)
       fill_in("Confirmed?", with: true)
-      fill_in("Planetary System ID", with: @the_solar_system.id)
+      #fill_in("Planetary System ID", with: @the_solar_system.id)
       click_button("Create Planet")
 
       expect(current_path).to eq("/planetary_systems/#{@the_solar_system.id}/planets")
