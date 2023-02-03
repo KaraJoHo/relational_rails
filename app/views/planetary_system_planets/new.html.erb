@@ -16,8 +16,7 @@
     <%= form.text_field :confirmed %>
   </div>
   <div>
-    <%= form.label :planetary_system_id, "Planetary System ID" %>
-    <%= form.text_field :planetary_system_id, required: true, class: 'form-control', value: @planetary_system.try(:id) %>
+    <%= form.text_field :planetary_system_id, hidden: true, value: @planetary_system.try(:id) %>
   </div> 
 
   <%= form.submit "Create Planet" %>
