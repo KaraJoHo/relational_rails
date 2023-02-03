@@ -60,5 +60,19 @@ RSpec.describe 'Planetary System Index Page' do
 
       expect(current_path).to eq('/planets')   
     end
+
+    it 'has a link next to each system to update it' do 
+
+      kepler_11_system = PlanetarySystem.create!(name: "Kepler, um..", light_years_from_earth: 2108, star_age: 3_200_000_000, metal_rich_star: true)
+      the_solar_system = PlanetarySystem.create(name: "The So Sassy System", light_years_from_earth: 0, star_age: 4_600_000_000, metal_rich_star: true)
+
+      visit "/planetary_systems"
+
+      expect(page).to have_content("Kepler, um..")
+      expect(page).to have_content("The So Sassy System")
+
+      expect(page).to have_link("Edit #{kepler_11_system.name}")
+      expect(page).to have_link("Edit #{the_solar_system.name}")
+    end
   end
 end
