@@ -1,7 +1,10 @@
 class PlanetarySystemPlanetsController < ApplicationController 
   def index 
+    # @planetary_system = PlanetarySystem.find(params[:planetary_system_id])
+    # @planets_in_system = @planetary_system.planets
+
     @planetary_system = PlanetarySystem.find(params[:planetary_system_id])
-    @planets_in_system = @planetary_system.planets
+    @planets_in_system = @planetary_system.ordered_by(params[:order])
   end
 
   def new 
