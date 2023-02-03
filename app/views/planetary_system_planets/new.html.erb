@@ -1,3 +1,4 @@
+<h3>Create a New Planet</h3>
 <%= form_with url: "/planetary_systems/#{@planetary_system.id}/planets", method: :post, local: true do |form| %>
   <div>
     <%= form.label :name, "Name" %>
