@@ -2,7 +2,7 @@
 
 <% @planetary_systems.each do |system| %>
   <ul>
-    <li><strong><%= system.name %></strong> Created at: <%= system.created_at %></li>
+    <li><strong><%= system.name %></strong> Created at: <%= system.created_at %><%= link_to("Edit #{system.name}", "/planetary_systems/#{system.id}/edit") %></li>
   </ul>
 <% end %> 
 
