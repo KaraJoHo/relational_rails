@@ -80,4 +80,25 @@ RSpec.describe "Planetary Systems Planets Index" do
       end
     end
   end
+  describe 'order alphabetically' do 
+    it 'has a link to sort planets in alphabetical order' do
+        
+      the_solar_system = PlanetarySystem.create(name: "The Solar System", light_years_from_earth: 0, star_age: 4_600_000_000, metal_rich_star: true)
+      neptune = Planet.create(name: "Neptune", planet_type: "Ice Giant", year_discovered: 1846, confirmed: true, planetary_system_id: the_solar_system.id)
+      pluto = Planet.create(name: "Pluto", planet_type: "Dwarf", year_discovered: 1930, confirmed: false, planetary_system_id: the_solar_system.id)
+      mercury = Planet.create(name: "Mercury", planet_type: "Terrestrial", year_discovered: 1631, confirmed: true, planetary_system_id: the_solar_system.id)
+
+      visit "planetary_systems/#{the_solar_system.id}/planets" 
+
+      expect(neptune.name).to appear_before(pluto.name)
+      expect(page).to have_link("Sort Planets Alphabetically")
+
+      click_link "Sort Planets Alphabetically"
+
+      expect(current_path).to eq("/planetary_systems/#{the_solar_system.id}/planets")
+
+      expect(mercury.name).to appear_before(neptune.name)
+      expect(neptune.name).to appear_before(pluto.name)
+    end
+  end
 end
