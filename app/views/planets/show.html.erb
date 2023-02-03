@@ -4,3 +4,5 @@
 <p>Year Discovered: <%= @planet.year_discovered %></p>
 <p>Confirmed?: <%= @planet.confirmed %></p>
 <p>Planetary System: <%= @planet.planetary_system.name%></p>
+
+<%= link_to("Update Planet", "/planets/#{@planet.id}/edit") %>

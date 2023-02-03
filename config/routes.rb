@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   get '/planets', to: 'planets#index'
   get '/planets/:id', to: 'planets#show'
+  get '/planets/:id/edit', to: 'planets#edit'
 
   get '/planetary_systems/:planetary_system_id/planets', to: 'planetary_system_planets#index'
   get '/planetary_systems/:planetary_system_id/planets/new', to: 'planetary_system_planets#new'
