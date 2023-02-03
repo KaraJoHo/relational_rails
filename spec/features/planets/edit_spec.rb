@@ -19,6 +19,7 @@ RSpec.describe "Planet Update" do
   end
   describe 'When visiting the planets show page' do 
     it 'has a link to update the planet' do 
+
       visit "/planets/#{@neptune.id}"
 
       expect(page).to have_link("Update Planet")
@@ -26,6 +27,21 @@ RSpec.describe "Planet Update" do
       click_link "Update Planet"
 
       expect(current_path).to eq("/planets/#{@neptune.id}/edit")
+    end
+
+    it 'has a form to update the planet and submit/redirect to show page' do 
+
+      visit "/planets/#{@neptune.id}/edit"
+
+      fill_in("Name", with: "Neptune")
+      fill_in("Planet Type", with: "Ice Giant")
+      fill_in("Year Discovered", with: 1847)
+      fill_in("Confirmed?", with: true)
+      click_button("Update Planet") 
+
+      expect(current_path).to eq("/planets/#{neptune.id}")
+      expect(page).to have_content("1847")
+
     end
   end
 end
