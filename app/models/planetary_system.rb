@@ -11,6 +11,5 @@ class PlanetarySystem < ApplicationRecord
     elsif order_pattern == "alphabetical"
       self.planets_ordered_alphabetically
     end
-
   end
 end
