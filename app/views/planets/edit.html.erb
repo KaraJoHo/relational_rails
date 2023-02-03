@@ -1,0 +1,19 @@
+<h3> Update Planet </h3>
+
+<%= form_with url: "/planets/#{@planet.id}", method: :patch, local: true do |form| %>
+  <%= form.label :name, "Name" %>
+  <%= form.text_field :name %><br>
+  
+  <%= form.label :planet_type, "Planet Type" %>
+  <%= form.text_field :planet_type %><br>
+  
+  <%= form.label :year_discovered, "Year Discovered" %>
+  <%= form.text_field :year_discovered %><br>
+  
+  <%= form.label :confirmed, "Confirmed?" %>
+  <%= form.text_field :confirmed %><br>
+  
+  <%= form.text_field :planetary_system_id, hidden: true, value: @planet.try(:id) %> 
+
+  <%= form.submit "Update Planet" %>
+<% end %>
