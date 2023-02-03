@@ -46,5 +46,18 @@ RSpec.describe "Planets Index Page" do
 
       expect(current_path).to eq('/planetary_systems')
     end
+
+    it 'only shows the planets that are confirmed with a true value' do 
+      the_solar_system = PlanetarySystem.create(name: "The Solar System", light_years_from_earth: 0, star_age: 4_600_000_000, metal_rich_star: true)
+      neptune = Planet.create(name: "Neptune", planet_type: "Ice Giant", year_discovered: 1846, confirmed: true, planetary_system_id: the_solar_system.id)
+      pluto = Planet.create(name: "Pluto", planet_type: "Dwarf", year_discovered: 1930, confirmed: false, planetary_system_id: the_solar_system.id)
+      mercury = Planet.create(name: "Mercury", planet_type: "Terrestrial", year_discovered: 1631, confirmed: true, planetary_system_id: the_solar_system.id)
+
+      visit '/planets'
+
+      expect(page).to have_content(neptune.name)
+      expect(page).to have_content(mercury.name)
+      expect(page).to_not have_content(pluto.name)
+    end
   end
 end
