@@ -13,7 +13,7 @@
   <%= form.label :confirmed, "Confirmed?" %>
   <%= form.text_field :confirmed %><br>
   
-  <%= form.text_field :planetary_system_id, hidden: true, value: @planet.try(:id) %> 
+  <%= form.text_field :planetary_system_id, hidden: true, value: @planet.try(:planetary_system_id) %> 
 
   <%= form.submit "Update Planet" %>
 <% end %>
