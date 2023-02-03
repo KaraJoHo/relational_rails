@@ -74,5 +74,55 @@ RSpec.describe 'Planetary System Index Page' do
       expect(page).to have_link("Edit #{kepler_11_system.name}")
       expect(page).to have_link("Edit #{the_solar_system.name}")
     end
+
+    it 'can update the form after clicking the link' do 
+      kepler_11_system = PlanetarySystem.create!(name: "Kepler, um..", light_years_from_earth: 2108, star_age: 3_200_000_000, metal_rich_star: true)
+      the_solar_system = PlanetarySystem.create(name: "The So Sassy System", light_years_from_earth: 0, star_age: 4_600_000_000, metal_rich_star: true)
+
+      visit "/planetary_systems"
+
+      expect(page).to have_content("Kepler, um..")
+      expect(page).to have_content("The So Sassy System")
+
+      expect(page).to have_link("Edit #{kepler_11_system.name}")
+      expect(page).to have_link("Edit #{the_solar_system.name}")
+
+      click_link "Edit #{kepler_11_system.name}"
+
+      expect(current_path).to eq("/planetary_systems/#{kepler_11_system.id}/edit")
+
+      fill_in("Name", with: "Kepler-11")
+      fill_in("Light Years From Earth", with: 2108)
+      fill_in("Star Age", with: 300000)
+      fill_in("Metal Rich Star?", with: true)
+      click_button("Update Planetary System")
+
+      expect(current_path).to eq("/planetary_systems/#{kepler_11_system.id}")
+      expect(page).to have_content("Kepler-11")
+      #------------------------------------------------------------------------------
+      # Going back to index page and editing the next solar system 
+      #------------------------------------------------------------------------------
+      visit "/planetary_systems"
+
+      expect(page).to have_content("Kepler-11")
+
+      click_link "Edit #{the_solar_system.name}"
+
+      expect(current_path).to eq("/planetary_systems/#{the_solar_system.id}/edit")
+
+      fill_in("Name", with: "Solar System")
+      fill_in("Light Years From Earth", with: 0)
+      fill_in("Star Age", with: 4_500_000_000)
+      fill_in("Metal Rich Star?", with: true)
+      click_button("Update Planetary System")
+
+      expect(current_path).to eq("/planetary_systems/#{the_solar_system.id}")
+      expect(page).to have_content("Solar System")
+
+      visit "/planetary_systems"
+
+      expect(page).to have_content("Kepler-11")
+      expect(page).to have_content("Solar System")
+    end
   end
 end

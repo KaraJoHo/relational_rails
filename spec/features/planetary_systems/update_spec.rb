@@ -38,8 +38,6 @@ RSpec.describe "Planetary System Update" do
 
       expect(current_path).to eq("/planetary_systems/#{kepler_11_system.id}")
       expect(page).to have_content("Kepler-11")
-
-
     end
   end
 end
