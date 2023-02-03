@@ -13,4 +13,15 @@ RSpec.describe PlanetarySystem do
     it {should have_many :planets}
   end
 
+  describe '#planets_ordered_alphabetically' do 
+    it 'can order the systems planets alphabetically' do 
+      the_solar_system = PlanetarySystem.create(name: "The Solar System", light_years_from_earth: 0, star_age: 4_600_000_000, metal_rich_star: true)
+      neptune = Planet.create(name: "Neptune", planet_type: "Ice Giant", year_discovered: 1846, confirmed: true, planetary_system_id: the_solar_system.id)
+      pluto = Planet.create(name: "Pluto", planet_type: "Dwarf", year_discovered: 1930, confirmed: false, planetary_system_id: the_solar_system.id)
+      mercury = Planet.create(name: "Mercury", planet_type: "Terrestrial", year_discovered: 1631, confirmed: true, planetary_system_id: the_solar_system.id)
+
+      expect(the_solar_system.planets_ordered_alphabetically).to eq([mercury, neptune, pluto])
+    end
+  end
+
 end
