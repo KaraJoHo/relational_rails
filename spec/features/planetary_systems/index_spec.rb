@@ -99,6 +99,9 @@ RSpec.describe 'Planetary System Index Page' do
 
       expect(current_path).to eq("/planetary_systems/#{kepler_11_system.id}")
       expect(page).to have_content("Kepler-11")
+      expect(page).to have_content("2108")
+      expect(page).to have_content("300000")
+      expect(page).to have_content("true")
       #------------------------------------------------------------------------------
       # Going back to index page and editing the next solar system 
       #------------------------------------------------------------------------------
@@ -122,7 +125,10 @@ RSpec.describe 'Planetary System Index Page' do
       visit "/planetary_systems"
 
       expect(page).to have_content("Kepler-11")
+      expect(page).to have_content("#{kepler_11_system.created_at}")
+     
       expect(page).to have_content("Solar System")
+      expect(page).to have_content("#{the_solar_system.created_at}")
     end
   end
 end
