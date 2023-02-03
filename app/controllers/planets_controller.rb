@@ -1,6 +1,7 @@
 class PlanetsController < ApplicationController
   def index 
-    @planets = Planet.all
+    all_planets = Planet.all
+    @planets = all_planets.only_true
   end
 
   def show 
