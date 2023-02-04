@@ -187,7 +187,7 @@ RSpec.describe "Planetary Systems Planets Index" do
 
       click_link "Delete #{neptune.name}"
 
-      expect(current_path).to eq("/planetary_systems/#{the_solar_system.id}/planets")
+      expect(current_path).to eq("/planets")
 
       expect(page).to_not have_content("Neptune")
       expect(page).to have_content("Mercury")
