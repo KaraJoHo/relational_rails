@@ -19,7 +19,7 @@ RSpec.describe "Destroy Planet" do
       expect(page).to have_content("#{venus.name}")
       expect(page).to have_content("#{earth.name}")
       expect(page).to_not have_content(mercury.name)
-      expect(Planet.exist?(mercury.id)).to eq(false)
+      expect(Planet.exists?(mercury.id)).to eq(false)
       expect(the_solar_system.planets).to eq([venus, earth])
     end
   end
