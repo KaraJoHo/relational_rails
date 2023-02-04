@@ -1,13 +1,4 @@
 require 'rails_helper'
-# User Story 19, Parent Delete 
-
-# As a visitor
-# When I visit a parent show page
-# Then I see a link to delete the parent
-# When I click the link "Delete Parent"
-# Then a 'DELETE' request is sent to '/parents/:id',
-# the parent is deleted, and all child records are deleted
-# and I am redirected to the parent index page where I no longer see this parent
 
 RSpec.describe 'Destroy Planetary System' do 
   describe 'When visiting the planetary system show page' do 
