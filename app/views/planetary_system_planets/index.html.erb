@@ -1,7 +1,10 @@
 <h1>Planetary System: <%= @planetary_system.name %></h1>
 
 <% @planets_in_system.each do |planet| %>
-  <h4><%= planet.name %> <span style="font-weight:normal"><%= link_to("Update #{planet.name}", "/planets/#{planet.id}/edit")%></h4>
+  <h4><%= planet.name %> 
+    <span style="font-weight:normal"><%= link_to("Update #{planet.name}", "/planets/#{planet.id}/edit")%>
+     <span style="font-weight:normal"><%=link_to("Delete #{planet.name}", "/planets/#{planet.id}/delete")%>
+  </h4>
   <p>Planet Type: <%= planet.planet_type %></p>
   <p>Year Discovered: <%= planet.year_discovered %></p>
   <p>Confirmed?: <%= planet.confirmed %></p>
