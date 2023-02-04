@@ -35,6 +35,13 @@ class PlanetarySystemsController < ApplicationController
     redirect_to "/planetary_systems/#{@planetary_system.id}"
   end
 
+  def destroy 
+    planetary_system = PlanetarySystem.find(params[:id])
+    planetary_system.destroy 
+    redirect_to "/planetary_systems"
+
+  end
+
   def planetary_attributes 
     params.permit(:name, :light_years_from_earth, :star_age, :metal_rich_star)
   end

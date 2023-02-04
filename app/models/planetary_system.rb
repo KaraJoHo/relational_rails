@@ -1,5 +1,5 @@
 class PlanetarySystem < ApplicationRecord 
-  has_many :planets
+  has_many :planets, dependent: :destroy
 
   def planets_ordered_alphabetically 
     self.planets.order(:name)

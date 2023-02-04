@@ -11,3 +11,4 @@
 <p1><strong><%= link_to("#{@planetary_system.name} Planets", "/planetary_systems/#{@planetary_system.id}/planets") %></strong></p1>
 
 <%= link_to("Update Planetary Systems", "/planetary_systems/#{@planetary_system.id}/edit") %>
+<%= link_to("Delete #{@planetary_system.name}", "/planetary_systems/#{@planetary_system.id}", method: :delete) %>

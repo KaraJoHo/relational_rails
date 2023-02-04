@@ -17,4 +17,6 @@ Rails.application.routes.draw do
  
   patch '/planetary_systems/:planetary_system_id', to: 'planetary_systems#update'
   patch '/planets/:id', to: 'planets#update'
+
+  delete '/planetary_systems/:id', to: 'planetary_systems#destroy'
 end
