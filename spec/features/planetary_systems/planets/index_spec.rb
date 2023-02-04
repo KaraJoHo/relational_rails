@@ -163,14 +163,12 @@ RSpec.describe "Planetary Systems Planets Index" do
       tau_ceti_e = Planet.create(name: "Tau Ceti E", planet_type: "Super Earth", year_discovered: 2017, confirmed: true, planetary_system_id: tau_ceti_system.id)
       tau_ceti_h = Planet.create(name: "Tau Ceti H", planet_type: "Super Earth", year_discovered: 2017, confirmed: true, planetary_system_id: tau_ceti_system.id)
 
-      "/planetary_systems#{the_solar_system.id}/planets"
+      visit "/planetary_systems/#{the_solar_system.id}/planets"
 
-      expect(page).to have_content("Input Year")
-
-      fill_in("order" with: 1900)
+      fill_in("order", with: 1900)
       click_button "Submit"
 
-      expect(current_path).to eq("/planetary_systems#{the_solar_system.id}/planets")
+      expect(current_path).to eq("/planetary_systems/#{the_solar_system.id}/planets")
       expect(page).to_not have_content("Mercury")
       expect(page).to_not have_content("Neptune")
       

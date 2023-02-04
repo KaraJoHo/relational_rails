@@ -8,6 +8,12 @@
   <p>Planetary System: <%= @planetary_system.name%></p>
 <% end %>
 
+<%= form_with url: "/planetary_systems/#{@planetary_system.id}/planets", method: :get, local: true do |form| %>
+  <%= form.label "Only show planets discovered after the year" %> 
+  <%= form.number_field :order %>
+  <%= form.submit "Submit" %>
+<% end %>
+
 <%= link_to("Create Planet", "/planetary_systems/#{@planetary_system.id}/planets/new") %>
 <br>
 <%= link_to("Sort Planets Alphabetically", order: "alphabetical") %>
