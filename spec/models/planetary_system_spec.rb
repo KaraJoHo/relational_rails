@@ -35,6 +35,7 @@ RSpec.describe PlanetarySystem do
       expect(the_solar_system.planets.all).to eq([neptune, pluto, mercury])
       expect(the_solar_system.ordered_by("alphabetical")).to eq([mercury, neptune, pluto])
       expect(the_solar_system.planets_ordered_alphabetically).to eq([mercury, neptune, pluto])
+      expect(the_solar_system.ordered_by(1900)).to eq([pluto])
     end
   end
 end
