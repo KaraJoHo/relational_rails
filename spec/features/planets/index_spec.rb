@@ -104,5 +104,23 @@ RSpec.describe "Planets Index Page" do
       expect(page).to have_content("Mercury")
       expect(page).to have_content("1631")
     end
+
+    it 'has a link to delete a planet next to each planet' do 
+      the_solar_system = PlanetarySystem.create!(name: "The Solar System", light_years_from_earth: 0, star_age: 4_600_000_000, metal_rich_star: true)
+      neptune = Planet.create!(name: "Neptune", planet_type: "Ice Giant", year_discovered: 1846, confirmed: true, planetary_system_id: the_solar_system.id)
+      mercury = Planet.create(name: "Mercury", planet_type: "Terrestrial", year_discovered: 1631, confirmed: true, planetary_system_id: the_solar_system.id) 
+
+      visit "/planets"
+
+      expect(page).to have_link("Delete #{neptune.name}")
+      expect(page).to have_link("Delete #{mercury.name}")
+
+      click_link "Delete #{neptune.name}"
+
+      expect(current_path).to eq("/planets")
+
+      expect(page).to_not have_content("Neptune")
+      expect(page).to have_content("Mercury")
+    end
   end
 end
