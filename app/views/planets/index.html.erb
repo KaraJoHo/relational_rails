@@ -1,7 +1,7 @@
 <h1><strong>Planets</strong></h1>
 
-<% @planets.each do |planet| %> 
-  <h4><%= planet.name %></h4>
+<% @planets.each do |planet| %>
+  <h4><%= planet.name %> <p><%= link_to("Edit #{planet.name}", "/planets/#{planet.id}/edit")%></p></h4> 
   <ul>
     <li>Planet Type: <%= planet.planet_type %></li>
     <li>Year Discovered: <%= planet.year_discovered %></li>
