@@ -121,6 +121,8 @@ RSpec.describe "Planets Index Page" do
 
       expect(page).to_not have_content("Neptune")
       expect(page).to have_content("Mercury")
+      expect(Planet.exists?(mercury.id)).to eq(true)
+      expect(Planet.exists?(neptune.id)).to eq(false)
     end
   end
 end

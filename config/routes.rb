@@ -22,4 +22,5 @@ Rails.application.routes.draw do
   delete '/planets/:id', to: 'planets#destroy'
 
   get '/planetary_systems/:id/delete', to: 'planetary_systems#destroy'
+  get '/planets/:id/delete', to: 'planets#destroy'
 end
