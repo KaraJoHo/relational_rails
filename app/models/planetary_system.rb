@@ -10,6 +10,8 @@ class PlanetarySystem < ApplicationRecord
       self.planets.all
     elsif order_pattern == "alphabetical"
       self.planets_ordered_alphabetically
+    elsif order_pattern.to_i.class == Integer 
+      self.planets.where("year_discovered > #{order_pattern}")
     end
   end
 end

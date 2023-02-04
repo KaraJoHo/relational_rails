@@ -151,4 +151,29 @@ RSpec.describe "Planetary Systems Planets Index" do
       expect(page).to have_content("Neptune")
     end
   end
+
+  describe 'Display records over a give threshold' do 
+    it 'has a form to input a number to return records with more than specified column' do 
+      the_solar_system = PlanetarySystem.create(name: "The Solar System", light_years_from_earth: 0, star_age: 4_600_000_000, metal_rich_star: true)
+      neptune = Planet.create(name: "Neptone", planet_type: "Ice Giant", year_discovered: 1846, confirmed: true, planetary_system_id: the_solar_system.id)
+      pluto = Planet.create(name: "Pluto", planet_type: "Dwarf", year_discovered: 1930, confirmed: false, planetary_system_id: the_solar_system.id)
+      mercury = Planet.create(name: "Mercury", planet_type: "Terrestrial", year_discovered: 1631, confirmed: true, planetary_system_id: the_solar_system.id)
+
+      tau_ceti_system = PlanetarySystem.create(name: "Tau Ceti", light_years_from_earth: 12, star_age: 5_800_000_000, metal_rich_star: false)
+      tau_ceti_e = Planet.create(name: "Tau Ceti E", planet_type: "Super Earth", year_discovered: 2017, confirmed: true, planetary_system_id: tau_ceti_system.id)
+      tau_ceti_h = Planet.create(name: "Tau Ceti H", planet_type: "Super Earth", year_discovered: 2017, confirmed: true, planetary_system_id: tau_ceti_system.id)
+
+      visit "/planetary_systems/#{the_solar_system.id}/planets"
+
+      fill_in("order", with: 1900)
+      click_button "Submit"
+
+      expect(current_path).to eq("/planetary_systems/#{the_solar_system.id}/planets")
+      expect(page).to_not have_content("Mercury")
+      expect(page).to_not have_content("Neptune")
+      
+
+
+    end
+  end
 end
