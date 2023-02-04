@@ -69,8 +69,8 @@ RSpec.describe "Planets Index Page" do
 
       expect(page).to have_content("Neptone")
       expect(page).to have_content("Merkurie")
-      expect(page).to have_link("Edit #{neptune.name}")
-      expect(page).to have_link("Edit #{mercury.name}")
+      expect(page).to have_link("Update #{neptune.name}")
+      expect(page).to have_link("Update #{mercury.name}")
     end
 
     it 'can click on the link to edit the planet' do 
@@ -82,10 +82,10 @@ RSpec.describe "Planets Index Page" do
 
       expect(page).to have_content("Neptune")
       expect(page).to have_content("Merkurie")
-      expect(page).to have_link("Edit #{neptune.name}")
-      expect(page).to have_link("Edit #{mercury.name}")
+      expect(page).to have_link("Update #{neptune.name}")
+      expect(page).to have_link("Update #{mercury.name}")
 
-      click_link "Edit #{mercury.name}"
+      click_link "Update #{mercury.name}"
 
       expect(current_path).to eq("/planets/#{mercury.id}/edit")
 
@@ -103,7 +103,6 @@ RSpec.describe "Planets Index Page" do
 
       expect(page).to have_content("Mercury")
       expect(page).to have_content("1631")
-
     end
   end
 end
