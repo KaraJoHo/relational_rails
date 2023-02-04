@@ -154,7 +154,7 @@ RSpec.describe 'Planetary System Index Page' do
       expect(page).to_not have_content("Solar System")
       expect(PlanetarySystem.exists?(the_solar_system.id)).to eq(false)
       expect(Planet.exists?(mars.id)).to eq(false)
-      expect(page).to have_content("Kepler 11")
+      expect(page).to have_content("Kepler-11")
     end
   end
 end
