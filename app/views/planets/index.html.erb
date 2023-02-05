@@ -3,7 +3,7 @@
 <% @planets.each do |planet| %>
   <h4><%= planet.name %> 
     <span style="font-weight:normal"><%= link_to("Update #{planet.name}", "/planets/#{planet.id}/edit")%>
-    <span style="font-weight:normal"><%=link_to("Delete #{planet.name}", "/planets/#{planet.id}/delete")%>
+    <span style="font-weight:normal"><%=link_to("Delete #{planet.name}", "/planets/#{planet.id}", method: :delete)%>
   </h4>
   <ul>
     <li>Planet Type: <%= planet.planet_type %></li>
