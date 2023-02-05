@@ -1,19 +1,14 @@
 class PlanetarySystemsController < ApplicationController 
 
   def index 
-    # @planetary_systems = PlanetarySystem.all
-    @planetary_systems = PlanetarySystem.order(created_at: :desc)
+    @planetary_systems = PlanetarySystem.order_by_created_at
+    #  @planetary_systems = PlanetarySystem.all
+    # @planetary_systems = PlanetarySystem.order(created_at: :desc)
   end
 
   def show 
     @planetary_system = PlanetarySystem.find(params[:id]) 
-  
-    @id = @planetary_system.id 
-    @light_years_from_earth = @planetary_system.light_years_from_earth
-    @star_age = @planetary_system.star_age 
-    @metal_rich_star = @planetary_system.metal_rich_star
-
-    @planet_count = @planetary_system.planets.count #move to model
+    @planet_count = @planetary_system.system_planet_count
   end
 
   def new 
@@ -37,9 +32,8 @@ class PlanetarySystemsController < ApplicationController
 
   def destroy 
     planetary_system = PlanetarySystem.find(params[:id])
-    planetary_system.destroy 
+    planetary_system.destroy
     redirect_to "/planetary_systems"
-
   end
 
   def planetary_attributes 

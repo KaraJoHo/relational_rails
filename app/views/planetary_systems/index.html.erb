@@ -4,7 +4,8 @@
   <ul>
     <li><strong><%= system.name %></strong> Created at: <%= system.created_at %> 
     <%= link_to("Edit #{system.name}", "/planetary_systems/#{system.id}/edit") %> ==
-    <%= link_to("Delete #{system.name}", "planetary_systems/#{system.id}/delete") %>
+    <%= link_to("Delete #{system.name}", "planetary_systems/#{system.id}", method: :delete) %>
+    
     </li>
   </ul>
 <% end %><br>

@@ -1,14 +1,13 @@
 <h1><strong><%= @planetary_system.name %></strong></h1> 
 <p1>Current Number of Planets: <%= @planet_count %></p1><br>
 
-<p1> Planet ID: <%= @id %></p1><br>
-<p1> Light Years From Earth: <%= @light_years_from_earth %></p1><br>
-<p1> Star Age: <%= @star_age %></p1><br> 
-<p1> Metal Rich Star?: <%= @metal_rich_star %></p1>
-<br>
+<p1> Planet ID: <%= @planetary_system.id %></p1><br>
+<p1> Light Years From Earth: <%= @planetary_system.light_years_from_earth %></p1><br>
+<p1> Star Age: <%= @planetary_system.star_age %></p1><br> 
+<p1> Metal Rich Star?: <%= @planetary_system.metal_rich_star %></p1>
 <br>
 
-<p1><strong><%= link_to("#{@planetary_system.name} Planets", "/planetary_systems/#{@planetary_system.id}/planets") %></strong></p1>
-
-<%= link_to("Update Planetary Systems", "/planetary_systems/#{@planetary_system.id}/edit") %>
+<p1><strong><%= link_to("#{@planetary_system.name} Planets", "/planetary_systems/#{@planetary_system.id}/planets") %></strong></p1><br>
+<br>
+<%= link_to("Update #{@planetary_system.name}", "/planetary_systems/#{@planetary_system.id}/edit") %><br>
 <%= link_to("Delete #{@planetary_system.name}", "/planetary_systems/#{@planetary_system.id}", method: :delete) %>
