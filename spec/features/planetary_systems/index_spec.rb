@@ -151,7 +151,7 @@ RSpec.describe 'Planetary System Index Page' do
 
       expect(current_path).to eq("/planetary_systems")
       
-      # expect(page).to_not have_content("Solar System") #why does this fail? It deletes properly in rails s
+      expect(page).to_not have_content("Solar System") #why does this fail? It deletes properly in rails s/ update: rails db:{drop,create,migrate} is magic
       expect(PlanetarySystem.exists?(the_solar_system.id)).to eq(false)
       expect(Planet.exists?(mars.id)).to eq(false)
       expect(page).to have_content("Kepler-11")

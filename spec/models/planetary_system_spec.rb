@@ -68,4 +68,16 @@ RSpec.describe PlanetarySystem do
       expect(the_has_no_metal_rich_system).to_not be_valid
     end
   end
+
+  describe '#system_planet_count' do 
+    it 'returns the systems number of planets' do 
+      the_solar_system = PlanetarySystem.create!(name: "The Solar System", light_years_from_earth: 0, star_age: 4_600_000_000, metal_rich_star: true)
+      
+      mercury = Planet.create(name: "Mercury", planet_type: "Terrestrial", year_discovered: 1631, confirmed: true, planetary_system_id: the_solar_system.id)
+      venus = Planet.create(name: "Venus", planet_type: "Terrestrial", year_discovered: 1610, confirmed: true, planetary_system_id: the_solar_system.id)
+      earth = Planet.create(name: "Earth", planet_type: "Terrestrial", year_discovered: 1543, confirmed: true, planetary_system_id: the_solar_system.id)
+
+      expect(the_solar_system.system_planet_count).to eq(3)
+    end
+  end
 end
