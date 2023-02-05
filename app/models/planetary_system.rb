@@ -24,4 +24,8 @@ class PlanetarySystem < ApplicationRecord
       self.planets.where("year_discovered > #{order_pattern}")
     end
   end
+
+  def system_planet_count 
+    planets.count
+  end
 end
