@@ -21,7 +21,6 @@ RSpec.describe PlanetarySystem do
       the_solar_system = PlanetarySystem.create!(name: "The Solar System", light_years_from_earth: 0, star_age: 4_600_000_000, metal_rich_star: true, created_at: Time.now)
       tau_ceti_system = PlanetarySystem.create!(name: "Tau Ceti", light_years_from_earth: 12, star_age: 5_800_000_000, metal_rich_star: false, created_at: Time.now - 1.day)
       kepler_11_system = PlanetarySystem.create!(name: "Kepler-11", light_years_from_earth: 2108, star_age: 3_200_000_000, metal_rich_star: true, created_at: Time.now - 2.days)
-      #require 'pry'; binding.pry
       expect(PlanetarySystem.order_by_created_at.to_a).to eq([the_solar_system, tau_ceti_system, kepler_11_system])
     end
   end

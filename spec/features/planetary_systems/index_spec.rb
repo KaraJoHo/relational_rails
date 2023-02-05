@@ -95,7 +95,7 @@ RSpec.describe 'Planetary System Index Page' do
       fill_in("Light Years From Earth", with: 2108)
       fill_in("Star Age", with: 300000)
       fill_in("Metal Rich Star?", with: true)
-      click_button("Update Planetary System")
+      click_button("Update #{kepler_11_system.name}")
 
       expect(current_path).to eq("/planetary_systems/#{kepler_11_system.id}")
       expect(page).to have_content("Kepler-11")
@@ -117,7 +117,7 @@ RSpec.describe 'Planetary System Index Page' do
       fill_in("Light Years From Earth", with: 0)
       fill_in("Star Age", with: 4_500_000_000)
       fill_in("Metal Rich Star?", with: true)
-      click_button("Update Planetary System")
+      click_button("Update #{the_solar_system.name}")
 
       expect(current_path).to eq("/planetary_systems/#{the_solar_system.id}")
       expect(page).to have_content("Solar System")

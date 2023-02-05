@@ -18,9 +18,9 @@ RSpec.describe "Planetary System Update" do
 
       visit "/planetary_systems/#{kepler_11_system.id}"
 
-      expect(page).to have_link("Update Planetary System")
+      expect(page).to have_link("Update #{kepler_11_system.name}")
 
-      click_link "Update Planetary System" 
+      click_link "Update #{kepler_11_system.name}" 
 
       expect(current_path).to eq("/planetary_systems/#{kepler_11_system.id}/edit")
     end
@@ -34,7 +34,7 @@ RSpec.describe "Planetary System Update" do
       fill_in("Light Years From Earth", with: 2108)
       fill_in("Star Age", with: 300000)
       fill_in("Metal Rich Star?", with: true)
-      click_button("Update Planetary System")
+      click_button("Update #{kepler_11_system.name}")
 
       expect(current_path).to eq("/planetary_systems/#{kepler_11_system.id}")
       expect(page).to have_content("Kepler-11")

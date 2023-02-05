@@ -31,11 +31,9 @@ class PlanetarySystemsController < ApplicationController
   end
 
   def destroy 
-    
     planetary_system = PlanetarySystem.find(params[:id])
     planetary_system.destroy
     redirect_to "/planetary_systems"
-    #  require 'pry'; binding.pry
   end
 
   def planetary_attributes 
