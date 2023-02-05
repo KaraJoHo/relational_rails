@@ -44,9 +44,13 @@ RSpec.describe PlanetarySystem do
       the_solar_system = PlanetarySystem.create(name: "The Solar System", light_years_from_earth: 0, star_age: 4_600_000_000, metal_rich_star: true)
       the_not_so_solar_system = PlanetarySystem.create(name: nil, light_years_from_earth: 0, star_age: 4_600_000_000, metal_rich_star: true)
       the_has_no_light_year_system = PlanetarySystem.create(name: "Solar  System", light_years_from_earth: nil, star_age: 4_600_000_000, metal_rich_star: true)
+      the_has_no_age_system = PlanetarySystem.create(name: "The Solar System", light_years_from_earth: 0, star_age: nil, metal_rich_star: true)
+      the_has_no_metal_rich_system = PlanetarySystem.create(name: "The Solar System", light_years_from_earth: 0, star_age: 4_600_000_000, metal_rich_star: nil)
       expect(the_solar_system).to be_valid 
       expect(the_not_so_solar_system).to_not be_valid
       expect(the_has_no_light_year_system).to_not be_valid
+      expect(the_has_no_age_system).to_not be_valid
+      expect(the_has_no_metal_rich_system).to_not be_valid
       
     end
   end
