@@ -39,7 +39,6 @@ class PlanetarySystemsController < ApplicationController
     planetary_system = PlanetarySystem.find(params[:id])
     planetary_system.destroy 
     redirect_to "/planetary_systems"
-
   end
 
   def planetary_attributes 
