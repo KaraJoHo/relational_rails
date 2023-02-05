@@ -17,7 +17,27 @@ RSpec.describe Planet do
       expect(mars.planetary_system_id).to eq(solar_system.id)
     end
   end
+
+  describe 'associations' do 
     it {should belong_to :planetary_system}
+  end
+
+  describe 'validations' do 
+    it 'should be valid' do 
+      mars = Planet.create!(name: "Mars", planet_type: "Terrestrial", year_discovered: 1610, confirmed: true, planetary_system_id: solar_system.id)
+      mars_ish = Planet.create(name: nil, planet_type: "Terrestrial", year_discovered: 1610, confirmed: true, planetary_system_id: solar_system.id)
+      mars_no_type = Planet.create(name: "Mars", planet_type: nil, year_discovered: 1610, confirmed: true, planetary_system_id: solar_system.id)
+      mars_no_year = Planet.create(name: "Mars", planet_type: "Terrestrial", year_discovered: nil, confirmed: true, planetary_system_id: solar_system.id)
+      mars_no_confirm = Planet.create(name: "Mars", planet_type: "Terrestrial", year_discovered: 1610, confirmed: nil, planetary_system_id: solar_system.id)
+
+      expect(mars).to be_valid 
+      expect(mars_ish).to_not be_valid
+      expect(mars_no_type).to_not be_valid
+      expect(mars_no_year).to_not be_valid
+      expect(mars_no_confirm).to_not be_valid
+
+    end
+  end
 
   describe '#only_true' do 
     it 'only shows true records' do 
