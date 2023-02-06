@@ -174,16 +174,17 @@ RSpec.describe 'Planetary System Index Page' do
 
       visit "/planetary_systems"  
       
-      # expect(page).to_not have_content("#{kepler_11_system.name} Number of Planets: ")
+      expect(page).to_not have_content("#{kepler_11_system.name} Number of Planets: ")
       expect(kepler_11_system.name).to appear_before(the_solar_system.name)
       expect(page).to have_link("Sort Systems by Number of Planets")  
 
       click_link "Sort Systems by Number of Planets" 
 
       expect(current_path).to eq("/planetary_systems")
+      
 
       expect(the_solar_system.name).to appear_before(kepler_11_system.name)
-      # expect(page).to have_content("#{kepler_11_system.name} Number of Planets: ")
+      expect(page).to have_content("#{kepler_11_system.name} Number of Planets: ")
       # After clicking the link, the number of planets shows next to each planetary system
     end
   end
