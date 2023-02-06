@@ -25,6 +25,14 @@ class PlanetarySystem < ApplicationRecord
     end
   end
 
+  def self.sorted_by(sort_pattern)
+    if sort_pattern.nil? 
+      order_by_created_at
+    elsif sort_pattern == "num_of_planets"
+      self.left_joins(:planets).group(:id).order('COUNT(planets.id) DESC')
+    end
+  end
+
   def system_planet_count 
     planets.count
   end

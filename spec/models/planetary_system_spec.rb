@@ -79,4 +79,21 @@ RSpec.describe PlanetarySystem do
       expect(the_solar_system.system_planet_count).to eq(3)
     end
   end
+
+  describe '::sorted_by' do 
+    it 'sorts the systems records absed on a given argument' do 
+      the_solar_system = PlanetarySystem.create!(name: "Solar System", light_years_from_earth: 0, star_age: 4_600_000_000, metal_rich_star: true)
+      kepler_11_system = PlanetarySystem.create!(name: "Kepler-11", light_years_from_earth: 2108, star_age: 3_200_000_000, metal_rich_star: true)
+
+      mars = Planet.create(name: "Mars", planet_type: "Terrestrial", year_discovered: 1610, confirmed: true, planetary_system_id: the_solar_system.id)
+      jupiter = Planet.create(name: "Jupiter", planet_type: "Gas Giant", year_discovered: 1610, confirmed: true, planetary_system_id: the_solar_system.id)
+      saturn = Planet.create(name: "Saturn", planet_type: "Gas Giant", year_discovered: 1610, confirmed: true, planetary_system_id: the_solar_system.id)
+
+      kepler_11_f = Planet.create(name: "Kepler-11 F", planet_type: "Neptune-like", year_discovered: 2010, confirmed: true, planetary_system_id: kepler_11_system.id)
+      kepler_11_b = Planet.create(name: "Kepler-11 B", planet_type: "Terrestrial", year_discovered: 2010, confirmed: true, planetary_system_id: kepler_11_system.id)
+
+      expect(PlanetarySystem.sorted_by(nil)).to eq([kepler_11_system, the_solar_system])
+      expect(PlanetarySystem.sorted_by("num_of_planets")).to eq([the_solar_system, kepler_11_system])
+    end
+  end
 end

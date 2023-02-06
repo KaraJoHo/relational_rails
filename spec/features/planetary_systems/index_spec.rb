@@ -157,4 +157,32 @@ RSpec.describe 'Planetary System Index Page' do
       expect(page).to have_content("Kepler-11")
     end
   end
+
+  describe 'Sort parents by the number of children they have' do 
+    it 'sorts the order of parents by the number of children, and adds the count' do 
+      the_solar_system = PlanetarySystem.create!(name: "Solar System", light_years_from_earth: 0, star_age: 4_600_000_000, metal_rich_star: true)
+      kepler_11_system = PlanetarySystem.create!(name: "Kepler-11", light_years_from_earth: 2108, star_age: 3_200_000_000, metal_rich_star: true)
+
+      mars = Planet.create(name: "Mars", planet_type: "Terrestrial", year_discovered: 1610, confirmed: true, planetary_system_id: the_solar_system.id)
+      jupiter = Planet.create(name: "Jupiter", planet_type: "Gas Giant", year_discovered: 1610, confirmed: true, planetary_system_id: the_solar_system.id)
+      saturn = Planet.create(name: "Saturn", planet_type: "Gas Giant", year_discovered: 1610, confirmed: true, planetary_system_id: the_solar_system.id)
+
+      kepler_11_f = Planet.create(name: "Kepler-11 F", planet_type: "Neptune-like", year_discovered: 2010, confirmed: true, planetary_system_id: kepler_11_system.id)
+      kepler_11_b = Planet.create(name: "Kepler-11 B", planet_type: "Terrestrial", year_discovered: 2010, confirmed: true, planetary_system_id: kepler_11_system.id)
+
+      visit "/planetary_systems"  
+      
+      # expect(page).to_not have_content("#{kepler_11_system.name} Number of Planets: ")
+      expect(kepler_11_system.name).to appear_before(the_solar_system.name)
+      expect(page).to have_link("Sort Systems by Number of Planets")  
+
+      click_link "Sort Systems by Number of Planets" 
+
+      expect(current_path).to eq("/planetary_systems")
+
+      expect(the_solar_system.name).to appear_before(kepler_11_system.name)
+      # expect(page).to have_content("#{kepler_11_system.name} Number of Planets: ")
+      # After clicking the link, the number of planets shows next to each planetary system
+    end
+  end
 end
