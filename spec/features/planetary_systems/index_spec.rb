@@ -182,6 +182,7 @@ RSpec.describe 'Planetary System Index Page' do
 
       expect(the_solar_system.name).to appear_before(kepler_11_system.name)
       # expect(page).to have_content("#{kepler_11_system.name} Number of Planets: ")
+      # After clicking the link, the number of planets shows next to each planetary system
     end
   end
 end
