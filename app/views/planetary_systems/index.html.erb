@@ -1,11 +1,15 @@
 <h1>Planetary Systems</h1>
-<%= link_to "Sort Systems by Number of Planets", order: "num_of_planets" %>
+<%= link_to "Sort Systems by Number of Planets", order: "num_of_planets", show_num: "true" %>
 
 <% @planetary_systems.each do |system| %>
   <ul>
     <li><strong><%= system.name %></strong> Created at: <%= system.created_at %> 
     <%= link_to("Edit #{system.name}", "/planetary_systems/#{system.id}/edit") %> ==
     <%= link_to("Delete #{system.name}", "planetary_systems/#{system.id}", method: :delete) %>
+
+    <% if @show_the_number == "true" %>
+      <%= "#{system.name} Number of Planets: #{system.system_planet_count}"%>
+    <% end %>
     
     </li>
   </ul>

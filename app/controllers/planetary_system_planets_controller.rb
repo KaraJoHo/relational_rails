@@ -17,6 +17,8 @@ class PlanetarySystemPlanetsController < ApplicationController
     redirect_to "/planetary_systems/#{@planetary_system.id}/planets"
   end
 
+  private
+
   def planet_attributes 
     params.permit(:name, :planet_type, :year_discovered, :confirmed, :planetary_system_id)
   end
