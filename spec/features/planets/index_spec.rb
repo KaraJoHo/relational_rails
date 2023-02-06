@@ -92,7 +92,8 @@ RSpec.describe "Planets Index Page" do
       fill_in("Name", with: "Mercury")
       fill_in("Planet Type", with: "Terrestrial")
       fill_in("Year Discovered", with: 1631)
-      fill_in("Confirmed?", with: true)
+      choose('true')
+      # fill_in("Confirmed?", with: true)
       click_button("Update Planet") 
 
       expect(current_path).to eq("/planets/#{mercury.id}")

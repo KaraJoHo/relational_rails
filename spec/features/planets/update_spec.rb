@@ -36,7 +36,8 @@ RSpec.describe "Planet Update" do
       fill_in("Name", with: "Neptune")
       fill_in("Planet Type", with: "Ice Giant")
       fill_in("Year Discovered", with: 1846)
-      fill_in("Confirmed?", with: true)
+      # fill_in("Confirmed?", with: true)
+      choose('true')
       click_button("Update Planet") 
 
       expect(current_path).to eq("/planets/#{@neptune.id}")
