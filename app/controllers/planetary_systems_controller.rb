@@ -1,13 +1,18 @@
 class PlanetarySystemsController < ApplicationController 
 
   def index 
-    
     all_planetary_systems = PlanetarySystem.all 
     @planetary_systems = all_planetary_systems.sorted_by(params[:order])
+
+    searched_system = all_planetary_systems.search_records(params[:query])
+    if !params[:query].nil?
+      @planetary_systems = searched_system
+    end
     #  @planetary_systems = PlanetarySystem.all
     # @planetary_systems = PlanetarySystem.order(created_at: :desc)
     # @planetary_systems = PlanetarySystem.order_by_created_at
     @show_the_number = params[:show_num]
+   
     
   end
 

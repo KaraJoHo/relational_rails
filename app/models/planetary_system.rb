@@ -33,6 +33,19 @@ class PlanetarySystem < ApplicationRecord
     end
   end
 
+  def self.search_records(search)
+    if search
+      name_search_key = PlanetarySystem.find_by(name: search)
+      if name_search_key 
+        self.where(id: name_search_key)
+      else
+        PlanetarySystem.all
+      end
+    else 
+      PlanetarySystem.all
+    end
+  end
+
   def system_planet_count 
     planets.count
   end

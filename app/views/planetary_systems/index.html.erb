@@ -1,5 +1,11 @@
 <h1>Planetary Systems</h1>
-<%= link_to "Sort Systems by Number of Planets", order: "num_of_planets", show_num: "true" %>
+<%= link_to "Sort Systems by Number of Planets", order: "num_of_planets", show_num: "true" %><br><br>
+
+<%= form_with url: "/planetary_systems", method: :get do |form| %>
+  <%= form.label :query, "Enter Keyword" %>
+  <%= form.text_field :query %>
+  <%= form.submit "Search" %>
+<% end %><br>
 
 <% @planetary_systems.each do |system| %>
   <ul>
