@@ -27,11 +27,18 @@ RSpec.describe 'New/Create' do
       visit '/planetary_systems/new'
       # save_and_open_page
 
+      # fill_in("Name", with: "Supercool System")
+      # fill_in("Light Years From Earth", with: 20)
+      # fill_in("Star Age", with: 300000)
+      # fill_in("Metal Rich Star?", with: true)
+      # click_button("Create Planetary System")
+  
       fill_in("Name", with: "Supercool System")
       fill_in("Light Years From Earth", with: 20)
       fill_in("Star Age", with: 300000)
-      fill_in("Metal Rich Star?", with: true)
+      choose('true')
       click_button("Create Planetary System")
+     
 
       expect(current_path).to eq('/planetary_systems')
       expect(page).to have_content("Supercool System")

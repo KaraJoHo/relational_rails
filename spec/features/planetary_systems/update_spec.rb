@@ -33,7 +33,8 @@ RSpec.describe "Planetary System Update" do
       fill_in("Name", with: "Kepler-11")
       fill_in("Light Years From Earth", with: 2108)
       fill_in("Star Age", with: 300000)
-      fill_in("Metal Rich Star?", with: true)
+      # fill_in("Metal Rich Star?", with: true)
+      choose('true')
       click_button("Update #{kepler_11_system.name}")
 
       expect(current_path).to eq("/planetary_systems/#{kepler_11_system.id}")
