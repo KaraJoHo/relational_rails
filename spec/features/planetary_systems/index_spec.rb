@@ -188,4 +188,28 @@ RSpec.describe 'Planetary System Index Page' do
       # After clicking the link, the number of planets shows next to each planetary system
     end
   end
+
+  describe 'search by name exact match' do 
+    it 'has a text box to filer results by a keyword and only returns records with the match' do 
+      the_solar_system = PlanetarySystem.create!(name: "Solar System", light_years_from_earth: 0, star_age: 4_600_000_000, metal_rich_star: true)
+      kepler_11_system = PlanetarySystem.create!(name: "Kepler-11", light_years_from_earth: 2108, star_age: 3_200_000_000, metal_rich_star: true)
+
+      mars = Planet.create(name: "Mars", planet_type: "Terrestrial", year_discovered: 1610, confirmed: true, planetary_system_id: the_solar_system.id)
+      jupiter = Planet.create(name: "Jupiter", planet_type: "Gas Giant", year_discovered: 1610, confirmed: true, planetary_system_id: the_solar_system.id)
+      saturn = Planet.create(name: "Saturn", planet_type: "Gas Giant", year_discovered: 1610, confirmed: true, planetary_system_id: the_solar_system.id)
+
+      kepler_11_f = Planet.create(name: "Kepler-11 F", planet_type: "Neptune-like", year_discovered: 2010, confirmed: true, planetary_system_id: kepler_11_system.id)
+      kepler_11_b = Planet.create(name: "Kepler-11 B", planet_type: "Terrestrial", year_discovered: 2010, confirmed: true, planetary_system_id: kepler_11_system.id)
+
+      visit "/planetary_systems" 
+
+      fill_in("Enter Keyword", with: "Solar System")
+      click_button "Search"
+      #  save_and_open_page
+
+      expect(current_path).to eq("/planetary_systems")
+      expect(page).to have_content("Solar System")
+      expect(page).to_not have_content("Kepler-11")
+    end
+  end
 end
