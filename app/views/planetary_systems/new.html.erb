@@ -8,8 +8,15 @@
   <%= form.label :star_age, "Star Age" %>
   <%= form.text_field :star_age %><br>
 
-  <%= form.label :metal_rich_star, "Metal Rich Star?" %>
-  <%= form.text_field :metal_rich_star %>
+  <%#= form.label :metal_rich_star, "Metal Rich Star?" %>
+  <%#= form.text_field :metal_rich_star %>
+  <%#= form.label :metal_rich_star%>
+  <%= form.label :metal_rich_star, "Metal Rich Star?" %><br>
+  <%= form.radio_button :metal_rich_star, "true" %>
+  <%= form.label :metal_rich_star_true, "true" %>
+  <%#= form.label :metal_rich_star, "Metal Rich Star?" %><br>
+  <%= form.radio_button :metal_rich_star, "false" %>
+  <%= form.label :metal_rich_star_true, "false" %><br>
 
   <%= form.submit "Create Planetary System" %>
 <% end %>
