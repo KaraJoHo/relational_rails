@@ -2,7 +2,7 @@
 <%= link_to "Sort Systems by Number of Planets", order: "num_of_planets", show_num: "true" %><br><br>
 
 <%= form_with url: "/planetary_systems", method: :get do |form| %>
-  <%= form.label :query, "Enter Keyword" %>
+  <%= form.label :query, "Enter Planetary System Name" %>
   <%= form.text_field :query %>
   <%= form.submit "Search" %>
 <% end %><br>

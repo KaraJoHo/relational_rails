@@ -2,6 +2,11 @@ class PlanetsController < ApplicationController
   def index 
     all_planets = Planet.all
     @planets = all_planets.only_true
+
+    searched_planets = all_planets.search_planet_records(params[:query])
+    if !params[:query].nil? 
+      @planets = searched_planets
+    end
   end
 
   def show 
