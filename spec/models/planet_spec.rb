@@ -57,6 +57,7 @@ RSpec.describe Planet do
 
       expect(Planet.search_planet_records("Neptune")).to match_array([neptune])
       expect(Planet.search_planet_records("Neptnot")).to match_array(Planet.all)
+      expect(Planet.search_planet_records(nil)).to match_array(Planet.all)
     end
   end
 end

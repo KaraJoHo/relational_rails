@@ -104,6 +104,7 @@ RSpec.describe PlanetarySystem do
 
       expect(PlanetarySystem.search_records("Solar System")).to match_array(the_solar_system)
       expect(PlanetarySystem.search_records("Solar")).to match_array(PlanetarySystem.all)
+      expect(PlanetarySystem.search_records(nil)).to match_array(PlanetarySystem.all)
     end
   end
 end
