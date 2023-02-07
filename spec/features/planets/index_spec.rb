@@ -92,7 +92,8 @@ RSpec.describe "Planets Index Page" do
       fill_in("Name", with: "Mercury")
       fill_in("Planet Type", with: "Terrestrial")
       fill_in("Year Discovered", with: 1631)
-      fill_in("Confirmed?", with: true)
+      choose('true')
+      # fill_in("Confirmed?", with: true)
       click_button("Update Planet") 
 
       expect(current_path).to eq("/planets/#{mercury.id}")
@@ -123,6 +124,21 @@ RSpec.describe "Planets Index Page" do
       expect(page).to have_content("Mercury")
       expect(Planet.exists?(mercury.id)).to eq(true)
       expect(Planet.exists?(neptune.id)).to eq(false)
+    end
+
+    it 'has a search box to search planet by name' do 
+      the_solar_system = PlanetarySystem.create!(name: "The Solar System", light_years_from_earth: 0, star_age: 4_600_000_000, metal_rich_star: true)
+      neptune = Planet.create!(name: "Neptune", planet_type: "Ice Giant", year_discovered: 1846, confirmed: true, planetary_system_id: the_solar_system.id)
+      mercury = Planet.create(name: "Mercury", planet_type: "Terrestrial", year_discovered: 1631, confirmed: true, planetary_system_id: the_solar_system.id) 
+
+      visit "/planets"
+
+      fill_in("Enter Planet Name", with: "Neptune")
+      click_button "Search"
+
+      expect(current_path).to eq("/planets")
+      expect(page).to have_content("Neptune")
+      expect(page).to_not have_content("Mercury")
     end
   end
 end

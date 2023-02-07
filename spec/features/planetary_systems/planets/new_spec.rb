@@ -23,8 +23,10 @@ RSpec.describe "New Child Creation" do
       fill_in("Name", with: "Earth")
       fill_in("Planet Type", with: "Terrestrial")
       fill_in("Year Discovered", with: 1543)
-      fill_in("Confirmed?", with: true)
+      choose('true')
+      # fill_in("Confirmed?", with: true)
       click_button("Create Planet")
+      
 
       expect(current_path).to eq("/planetary_systems/#{@the_solar_system.id}/planets")
       expect(page).to have_content("Earth")

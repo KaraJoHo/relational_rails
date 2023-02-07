@@ -5,10 +5,6 @@ class PlanetarySystem < ApplicationRecord
   validates :star_age, presence: true
   validates :metal_rich_star, inclusion: [true, false]
 
-  # def self.order_by_created_at
-  #   order(created_at: :DESC)
-  # end
-
   scope :order_by_created_at, -> {self.order(created_at: :DESC)}
 
   def planets_ordered_alphabetically 
@@ -30,6 +26,19 @@ class PlanetarySystem < ApplicationRecord
       order_by_created_at
     elsif sort_pattern == "num_of_planets"
       self.left_joins(:planets).group(:id).order('COUNT(planets.id) DESC')
+    end
+  end
+
+  def self.search_records(search)
+    if search
+      name_search_key = PlanetarySystem.find_by(name: search)
+      if name_search_key 
+        self.where(id: name_search_key)
+      else
+        PlanetarySystem.all
+      end
+    else 
+      PlanetarySystem.all
     end
   end
 

@@ -3,9 +3,13 @@ class PlanetarySystemsController < ApplicationController
   def index 
     all_planetary_systems = PlanetarySystem.all 
     @planetary_systems = all_planetary_systems.sorted_by(params[:order])
-    #  @planetary_systems = PlanetarySystem.all
-    # @planetary_systems = PlanetarySystem.order(created_at: :desc)
-    # @planetary_systems = PlanetarySystem.order_by_created_at
+
+    searched_system = all_planetary_systems.search_records(params[:query])
+    if !params[:query].nil?
+      @planetary_systems = searched_system
+    end
+    
+    @show_the_number = params[:show_num]
   end
 
   def show 
@@ -37,6 +41,8 @@ class PlanetarySystemsController < ApplicationController
     planetary_system.destroy
     redirect_to "/planetary_systems"
   end
+
+  private
 
   def planetary_attributes 
     params.permit(:name, :light_years_from_earth, :star_age, :metal_rich_star)

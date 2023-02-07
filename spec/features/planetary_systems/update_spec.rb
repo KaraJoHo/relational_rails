@@ -1,16 +1,5 @@
 require 'rails_helper'
-# User Story 12, Parent Update 
 
-# As a visitor
-# When I visit a parent show page
-# Then I see a link to update the parent "Update Parent"
-# When I click the link "Update Parent"
-# Then I am taken to '/parents/:id/edit' where I  see a form to edit the parent's attributes:
-# When I fill out the form with updated information
-# And I click the button to submit the form
-# Then a `PATCH` request is sent to '/parents/:id',
-# the parent's info is updated,
-# and I am redirected to the Parent's Show page where I see the parent's updated info
 RSpec.describe "Planetary System Update" do 
   describe 'visiting the parent show page' do 
     it 'has a link to update the planetary system' do 
@@ -33,7 +22,7 @@ RSpec.describe "Planetary System Update" do
       fill_in("Name", with: "Kepler-11")
       fill_in("Light Years From Earth", with: 2108)
       fill_in("Star Age", with: 300000)
-      fill_in("Metal Rich Star?", with: true)
+      choose('true')
       click_button("Update #{kepler_11_system.name}")
 
       expect(current_path).to eq("/planetary_systems/#{kepler_11_system.id}")

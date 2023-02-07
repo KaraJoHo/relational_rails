@@ -1,8 +1,5 @@
 class PlanetarySystemPlanetsController < ApplicationController 
   def index 
-    # @planetary_system = PlanetarySystem.find(params[:planetary_system_id])
-    # @planets_in_system = @planetary_system.planets
-
     @planetary_system = PlanetarySystem.find(params[:planetary_system_id])
     @planets_in_system = @planetary_system.ordered_by(params[:order])
   end
@@ -16,6 +13,8 @@ class PlanetarySystemPlanetsController < ApplicationController
     @planetary_system.planets.create(planet_attributes)
     redirect_to "/planetary_systems/#{@planetary_system.id}/planets"
   end
+
+  private
 
   def planet_attributes 
     params.permit(:name, :planet_type, :year_discovered, :confirmed, :planetary_system_id)

@@ -94,7 +94,8 @@ RSpec.describe 'Planetary System Index Page' do
       fill_in("Name", with: "Kepler-11")
       fill_in("Light Years From Earth", with: 2108)
       fill_in("Star Age", with: 300000)
-      fill_in("Metal Rich Star?", with: true)
+      choose('true')
+      # fill_in("Metal Rich Star?", with: true)
       click_button("Update #{kepler_11_system.name}")
 
       expect(current_path).to eq("/planetary_systems/#{kepler_11_system.id}")
@@ -116,7 +117,8 @@ RSpec.describe 'Planetary System Index Page' do
       fill_in("Name", with: "Solar System")
       fill_in("Light Years From Earth", with: 0)
       fill_in("Star Age", with: 4_500_000_000)
-      fill_in("Metal Rich Star?", with: true)
+      choose('true')
+      # fill_in("Metal Rich Star?", with: true)
       click_button("Update #{the_solar_system.name}")
 
       expect(current_path).to eq("/planetary_systems/#{the_solar_system.id}")
@@ -172,17 +174,41 @@ RSpec.describe 'Planetary System Index Page' do
 
       visit "/planetary_systems"  
       
-      # expect(page).to_not have_content("#{kepler_11_system.name} Number of Planets: ")
+      expect(page).to_not have_content("#{kepler_11_system.name} Number of Planets: ")
       expect(kepler_11_system.name).to appear_before(the_solar_system.name)
       expect(page).to have_link("Sort Systems by Number of Planets")  
 
       click_link "Sort Systems by Number of Planets" 
 
       expect(current_path).to eq("/planetary_systems")
+      
 
       expect(the_solar_system.name).to appear_before(kepler_11_system.name)
-      # expect(page).to have_content("#{kepler_11_system.name} Number of Planets: ")
+      expect(page).to have_content("#{kepler_11_system.name} Number of Planets: ")
       # After clicking the link, the number of planets shows next to each planetary system
+    end
+  end
+
+  describe 'search by name exact match' do 
+    it 'has a text box to filer results by a keyword and only returns records with the match' do 
+      the_solar_system = PlanetarySystem.create!(name: "Solar System", light_years_from_earth: 0, star_age: 4_600_000_000, metal_rich_star: true)
+      kepler_11_system = PlanetarySystem.create!(name: "Kepler-11", light_years_from_earth: 2108, star_age: 3_200_000_000, metal_rich_star: true)
+
+      mars = Planet.create(name: "Mars", planet_type: "Terrestrial", year_discovered: 1610, confirmed: true, planetary_system_id: the_solar_system.id)
+      jupiter = Planet.create(name: "Jupiter", planet_type: "Gas Giant", year_discovered: 1610, confirmed: true, planetary_system_id: the_solar_system.id)
+      saturn = Planet.create(name: "Saturn", planet_type: "Gas Giant", year_discovered: 1610, confirmed: true, planetary_system_id: the_solar_system.id)
+
+      kepler_11_f = Planet.create(name: "Kepler-11 F", planet_type: "Neptune-like", year_discovered: 2010, confirmed: true, planetary_system_id: kepler_11_system.id)
+      kepler_11_b = Planet.create(name: "Kepler-11 B", planet_type: "Terrestrial", year_discovered: 2010, confirmed: true, planetary_system_id: kepler_11_system.id)
+
+      visit "/planetary_systems" 
+
+      fill_in("Enter Planetary System Name", with: "Solar System")
+      click_button "Search"
+     
+      expect(current_path).to eq("/planetary_systems")
+      expect(page).to have_content("Solar System")
+      expect(page).to_not have_content("Kepler-11")
     end
   end
 end

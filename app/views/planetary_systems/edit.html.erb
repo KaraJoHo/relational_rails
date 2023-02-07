@@ -3,13 +3,20 @@
   <%= form.text_field :name %><br>
 
   <%= form.label :light_years_from_earth, "Light Years From Earth" %>
-  <%= form.text_field :light_years_from_earth %><br>
+  <%= form.number_field :light_years_from_earth %><br>
 
   <%= form.label :star_age, "Star Age" %>
-  <%= form.text_field :star_age %><br>
+  <%= form.number_field :star_age %><br>
 
-  <%= form.label :metal_rich_star, "Metal Rich Star?" %>
-  <%= form.text_field :metal_rich_star %>
+  <%#= form.label :metal_rich_star, "Metal Rich Star?" %>
+  <%#= form.text_field :metal_rich_star %>
+
+  <%= form.label :metal_rich_star, "Metal Rich Star?" %><br>
+  <%= form.radio_button :metal_rich_star, "true" %>
+  <%= form.label :metal_rich_star_true, "true" %>
+  <%#= form.label :metal_rich_star, "Metal Rich Star?" %><br>
+  <%= form.radio_button :metal_rich_star, "false" %>
+  <%= form.label :metal_rich_star_true, "false" %><br>
 
   <%= form.submit "Update #{@planetary_system.name}" %>
 <% end %>
