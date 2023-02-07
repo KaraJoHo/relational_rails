@@ -203,10 +203,9 @@ RSpec.describe 'Planetary System Index Page' do
 
       visit "/planetary_systems" 
 
-      fill_in("Enter Keyword", with: "Solar System")
+      fill_in("Enter Planetary System Name", with: "Solar System")
       click_button "Search"
-      #  save_and_open_page
-
+     
       expect(current_path).to eq("/planetary_systems")
       expect(page).to have_content("Solar System")
       expect(page).to_not have_content("Kepler-11")
