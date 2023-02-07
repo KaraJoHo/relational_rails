@@ -5,10 +5,6 @@ class PlanetarySystem < ApplicationRecord
   validates :star_age, presence: true
   validates :metal_rich_star, inclusion: [true, false]
 
-  # def self.order_by_created_at
-  #   order(created_at: :DESC)
-  # end
-
   scope :order_by_created_at, -> {self.order(created_at: :DESC)}
 
   def planets_ordered_alphabetically 

@@ -8,12 +8,8 @@ class PlanetarySystemsController < ApplicationController
     if !params[:query].nil?
       @planetary_systems = searched_system
     end
-    #  @planetary_systems = PlanetarySystem.all
-    # @planetary_systems = PlanetarySystem.order(created_at: :desc)
-    # @planetary_systems = PlanetarySystem.order_by_created_at
-    @show_the_number = params[:show_num]
-   
     
+    @show_the_number = params[:show_num]
   end
 
   def show 
