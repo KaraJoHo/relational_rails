@@ -9,12 +9,12 @@ class Planet < ApplicationRecord
 
   def self.search_planet_records(search)
     if search 
-      name_search_key = Planet.find_by(name: search)
+      name_search_key = Planet.find_by(name: search.capitalize)
       if name_search_key 
-        self.where(id: name_search_key)
+        found = self.where(id: name_search_key)
       else 
         Planet.all 
-      end
+       end
     else 
       Planet.all
     end
