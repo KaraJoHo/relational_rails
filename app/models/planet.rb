@@ -4,6 +4,7 @@ class Planet < ApplicationRecord
   validates :planet_type, presence: true 
   validates :year_discovered, presence: true
   validates :confirmed, inclusion: [true, false]
+  before_save :capitalize_planet_name
 
   scope :only_true, -> {Planet.where(confirmed: true)}
 
@@ -18,5 +19,9 @@ class Planet < ApplicationRecord
     else 
       Planet.all
     end
+  end
+
+  def capitalize_planet_name 
+    self.name = name.capitalize
   end
 end

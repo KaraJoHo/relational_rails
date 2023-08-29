@@ -37,6 +37,11 @@ RSpec.describe Planet do
       expect(mars_no_confirm).to_not be_valid
 
     end
+
+    it "should save the planet name capitalized if entered with a lowercase" do 
+      mars = Planet.create!(name: "mars", planet_type: "Terrestrial", year_discovered: 1610, confirmed: true, planetary_system_id: solar_system.id)
+      expect(mars.name).to eq("Mars")
+    end
   end
 
   describe '#only_true' do 
