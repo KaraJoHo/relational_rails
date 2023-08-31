@@ -1,8 +1,6 @@
 class Planet < ApplicationRecord 
   belongs_to :planetary_system
-  validates :name, presence: true
-  validates :planet_type, presence: true 
-  validates :year_discovered, presence: true
+  validates_presence_of :name, :planet_type, :year_discovered
   validates :confirmed, inclusion: [true, false]
   before_save :capitalize_planet_name
 
@@ -11,11 +9,12 @@ class Planet < ApplicationRecord
   def self.search_planet_records(search)
     if search 
       name_search_key = Planet.find_by(name: search.capitalize)
-      if name_search_key 
-        found = self.where(id: name_search_key)
-      else 
-        Planet.all 
-       end
+      name_search_key ? self.where(id: name_search_key) : Planet.all
+      # if name_search_key 
+      #   self.where(id: name_search_key)
+      # else 
+      #   Planet.all 
+      #  end
     else 
       Planet.all
     end
